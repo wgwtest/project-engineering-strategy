@@ -1,5 +1,7 @@
 # Project Engineering Strategy
 
+[![Project Engineering Strategy social preview](assets/social-preview.png)](https://github.com/wgwtest/project-engineering-strategy)
+
 [![GitHub stars](https://img.shields.io/github/stars/wgwtest/project-engineering-strategy?style=social)](https://github.com/wgwtest/project-engineering-strategy/stargazers)
 [![GitHub release](https://img.shields.io/github/v/release/wgwtest/project-engineering-strategy)](https://github.com/wgwtest/project-engineering-strategy/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
