@@ -1,0 +1,7 @@
+interface:
+  display_name: "Project Engineering Strategy"
+  short_description: "Cross-session engineering workflow and acceptance governance"
+  default_prompt: "Use $project-engineering-strategy to align this repo to a stable engineering workflow and acceptance process."
+
+policy:
+  allow_implicit_invocation: true
