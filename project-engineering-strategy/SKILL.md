@@ -165,6 +165,10 @@ Additional execution contract quality rules:
 - Stable plan documents should be named by WBS node, not by temporary labels such as “当前阶段计划”.
 - The active node should be recorded in the project README/index and tracker, not by renaming the stable plan file.
 - Milestones such as `M1`, `M2` are validation gates, not the top-level decomposition axis.
+- New stable docs, especially under `02_设计说明/` and `03_研制计划/`, should default to Chinese-first titles and section headings when the main audience is Chinese-reading collaborators.
+- If an English technical term, acronym, or product word must appear in a title or key heading, include a Chinese counterpart in the same title or heading, for example `运行时资源覆盖（Runtime Override）`.
+- In design docs, plans, and other long-form collaboration docs, the first occurrence of a non-obvious English term should normally appear as a Chinese-English pair or English-Chinese pair once; after that, a single form may be used consistently.
+- Avoid creating stable collaboration docs whose titles are English-only or acronym-only unless the user explicitly asks for English-first documentation.
 
 ### Dual-gate rule
 
@@ -225,10 +229,11 @@ This keeps schedule view, execution contract, and verification evidence connecte
 
 ## Project doc-root rule
 
-Determine the local doc root as follows:
+Determine the local doc root in this order:
 
-1. If the project already has a stable formal doc root, keep it and record the decision in the local strategy mapping.
-2. If the project does not, create `DOC/CODEX_DOC/` as the default doc root.
+1. Existing `DOC/CODEX_DOC/`
+2. Existing `DOC/CodexAnylyse/`
+3. If neither exists, create `DOC/CODEX_DOC/` and record that decision.
 
 Then place project artifacts under that root:
 

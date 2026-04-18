@@ -50,6 +50,8 @@ Rules:
 2. `03_研制计划/` stores WBS node docs flatly; one node keeps one file.
 3. `03_研制计划/` files use: `NN-WBS-节点编号-主题-研制计划.md`.
 4. If a category needs second-level folders, those folders also use stable numeric prefixes.
+5. For Chinese-reading teams, new stable doc titles and major headings should default to Chinese-first wording.
+6. If a title must contain an English technical term, acronym, or product word, add the Chinese counterpart in the same title or main heading at least once.
 
 ### 2.3 Required second-level directories
 
