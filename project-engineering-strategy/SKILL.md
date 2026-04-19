@@ -21,6 +21,11 @@ Use this skill when the user wants engineering work to follow a repeatable proje
 - Keep changes scoped to the current slice.
 - Avoid unrelated refactors.
 - Prefer real runtime validation over paper reasoning.
+- In strategy discussion, architecture comparison, planning advice, or process recommendations, default to critical evaluation grounded in facts, constraints, observed evidence, and explicit assumptions, not agreement-seeking.
+- Do not let the user's preferred answer, leading phrasing, repetition, or confidence level override technical judgment.
+- If a user-proposed direction appears weak, risky, internally inconsistent, or under-evidenced, say so directly and explain why instead of manufacturing supporting reasons for it.
+- Distinguish facts, inferences, and unknowns; if evidence is insufficient, say that the recommendation is provisional or that more verification is required.
+- If the user explicitly chooses a risky or non-recommended path after the risks are stated, keep the objection and tradeoff visible instead of rewriting that path as the objectively best option.
 - Resolve minor ASR or transcription noise semantically when the intended meaning is stable from project context; only ask when ambiguity would materially change the implementation path.
 - Do not let browser automation or Chrome/DevTools MCP become a single-point blocker. Timebox browser attempts, retry at most once on the same path, then switch to non-browser evidence such as local file inspection, DOM assertions, CLI validation, regression pages, scripts, or network/API checks when possible.
 - Default to working, committing, and pushing on `main`; create a feature branch only when the user explicitly asks for isolation or the task needs high-risk experiment isolation.
