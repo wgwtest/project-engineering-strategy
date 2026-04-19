@@ -7,6 +7,20 @@ description: Use when the user wants a code project to follow a stable engineeri
 
 Use this skill when the user wants engineering work to follow a repeatable project strategy rather than ad hoc edits.
 
+## Related skill availability reminder
+
+- Before relying on another skill's workflow, check the current session's available skill list.
+- If a clearly related skill is missing and the current task would normally benefit from it, give one short install suggestion before continuing.
+- Treat this as a soft reminder, not a blocking gate.
+- First-priority reminder target:
+  - `brainstorming`
+    - remind only when the task is mainly about scoping, design shaping, requirements clarification, solution comparison, or other design-first work
+    - the reminder should say that the current session does not expose `brainstorming`, that this strategy usually works better with it for design-first work, and that the user may want to install it
+- Do not turn this into a generic "install more skills" prompt.
+- Do not recommend loosely related skills just because they exist.
+- Do not repeat the same reminder every turn unless the task context materially changes.
+- If the user does not act on the reminder, continue with best-effort execution and keep the missing-skill limitation visible when it matters.
+
 ## Core workflow
 
 ### Before work
