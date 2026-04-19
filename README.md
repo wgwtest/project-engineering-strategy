@@ -20,6 +20,26 @@ It pushes Codex toward a more disciplined workflow:
 - separate self-test evidence from human acceptance
 - avoid treating worktrees or temporary paths as official delivery paths
 
+## Before vs After
+
+A fresh Codex session on a real repository tends to fail in predictable ways.
+
+### Without This Skill
+
+- Codex starts editing from recent chat memory instead of checking the actual handoff
+- UI polish starts before models, contracts, or runtime behavior are verified
+- self-test results and human acceptance get blended together
+- implementation moves ahead while issue, project, or doc state drifts
+
+### With This Skill
+
+- Codex identifies the current handoff, acceptance state, and recent test evidence before editing
+- execution starts from models, contracts, runtime behavior, and event chains before UI cleanup
+- self-test evidence is reported separately from human acceptance
+- repo docs, tracker state, and execution context stay aligned in the same round
+
+That is the core shift: less chat-only continuity, more project-level continuity.
+
 ## Good Fit
 
 Use this repo if you want Codex to act more like a project engineer and less like a stateless patch generator.
