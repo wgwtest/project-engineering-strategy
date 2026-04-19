@@ -38,6 +38,7 @@ Use this skill when the user wants engineering work to follow a repeatable proje
 - If the user has not confirmed, mark status as:
   - `待人工验收`
   - or `待用户确认`
+- If the tracker is a GitHub Project and its `Status` field provides `Hum Check`, map the above pending-human-review state to `Hum Check` instead of `Done`.
 - If the user explicitly indicates acceptance, sync status in the same round across:
   - tracker status
   - execution contract `当前状态`
@@ -112,6 +113,13 @@ When the user clearly marks a task as passed, approved, confirmed, or accepted:
 - update the execution contract `当前状态` to `已验收`
 - update any local index or node-status docs that still expose the old pending state
 - do not leave tracker, issue contract, and local docs in conflicting states
+
+When a task is only self-tested and is still waiting for human validation:
+
+- do not advance the tracker `Status` to `Done`
+- if GitHub Project `Status` provides `Hum Check`, use `Hum Check`
+- keep the execution contract at `已自测` or `待人工验收`
+- keep local docs consistent with the same pre-acceptance meaning
 
 ### Execution contract rule
 
@@ -203,6 +211,18 @@ If the upstream phase is still pending human acceptance:
   - `待人工验收`
   - `已验收`
   - `阻塞中`
+- If GitHub Project `Status` provides `Hum Check`, use the following coarse mapping:
+  - `Todo`
+    - not started yet
+  - `In Progress`
+    - active implementation or rework
+  - `Hum Check`
+    - recommended color: blue
+    - already self-tested
+    - waiting for human validation, retest, or confirmation
+  - `Done`
+    - explicitly accepted by the user
+- Do not use `Done` for work that is merely self-tested and waiting for human review.
 
 ### Evidence backlink rule
 
