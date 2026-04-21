@@ -121,6 +121,14 @@ Recommended tracker fields:
 5. `Start Date`
 6. `Target Date`
 
+Before mutating remote tracker schema, decide:
+
+1. whether GitHub Project, GitLab, or an equivalent remote board is the formal tracker layer for this project
+2. whether the user allows remote-tool use for this project
+3. whether the user allows schema changes such as new fields, status options, or views
+
+If any of those answers is no or still unknown, keep detailed execution state in local execution contracts until approval is explicit.
+
 Tracker responsibility:
 
 1. schedule
@@ -212,6 +220,17 @@ Execution contracts should use finer states such as:
 4. `待人工验收`
 5. `已验收`
 6. `阻塞中`
+
+If remote schema changes are allowed, prefer:
+
+1. a coarse `Status` field for schedule and roadmap readability
+2. a separate `Execution Status` or `当前状态` field for the fine-grained execution states above
+
+Only use a single six-state `Status` model when:
+
+1. the user explicitly wants a single-field model
+2. the tool cannot support two status-like fields cleanly
+3. the existing board already depends on that model and migration cost is not justified
 
 ### 6.4 Shared path convention
 

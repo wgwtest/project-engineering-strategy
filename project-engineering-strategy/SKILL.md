@@ -108,6 +108,15 @@ It should primarily maintain:
 
 Do not use the tracker as the only place for long design notes, detailed click-path acceptance scripts, or self-test logs.
 
+### Remote tracker governance rule
+
+- When a project exposes GitHub Project, GitLab boards, or another writable remote tracker, first determine whether that surface is formally adopted as the project's tracker layer.
+- Visibility is not permission. Seeing a board does not mean you should mutate it.
+- Before creating or changing remote tracker schema, explicitly confirm that the user allows remote-tool use and schema mutation for this project.
+- Schema mutation includes fields, status options, groupings, views, automations, and other structural changes that affect collaborators.
+- Without that approval, you may read existing tracker state but must not create, rename, delete, or repurpose remote fields or status options.
+- If no remote tracker has been formally adopted yet, keep schedule and execution detail in local docs until the project chooses one.
+
 ### Strict WBS tree rule
 
 - For staged delivery projects, use `GitHub Issues + sub-issues` as the WBS source of truth.
@@ -242,6 +251,14 @@ If the upstream phase is still pending human acceptance:
   - `Done`
     - explicitly accepted by the user
 - Do not use `Done` for work that is merely self-tested and waiting for human review.
+- If remote schema changes are allowed, prefer a dual-layer model:
+  - keep `Status` coarse-grained for schedule and roadmap readability
+  - add `Execution Status` or `当前状态` as a separate field for the fine-grained states above
+- Only collapse the fine-grained states directly into the remote `Status` field when:
+  - the user explicitly wants a single-field model
+  - the tool cannot support a second status-like field cleanly
+  - or the existing project already depends on that single-field model and preserving continuity is cheaper than migration
+- If you choose the single-field model, keep the tradeoff visible: roadmap readability and execution detail become coupled.
 
 ### Evidence backlink rule
 
