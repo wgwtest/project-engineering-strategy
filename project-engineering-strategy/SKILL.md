@@ -178,7 +178,7 @@ Additional execution contract quality rules:
 
 - In GitHub collaboration surfaces (Issue, Project item body, PR comments), file and artifact paths must be repository-relative.
 - Preferred examples:
-  - `DOC/CODEX_DOC/03_研制计划/01-WBS-0-<project>-研发总纲-研制计划.md`
+  - `DOC/CODEX_DOC/04_研制计划/01-WBS-0-<project>-研发总纲-研制计划.md`
   - `src/server/routes.js`
 - When clickability is needed across collaborators, add repository URLs such as:
   - `https://github.com/<owner>/<repo>/blob/<branch>/DOC/...`
@@ -192,7 +192,7 @@ Additional execution contract quality rules:
 - Stable plan documents should be named by WBS node, not by temporary labels such as “当前阶段计划”.
 - The active node should be recorded in the project README/index and tracker, not by renaming the stable plan file.
 - Milestones such as `M1`, `M2` are validation gates, not the top-level decomposition axis.
-- New stable docs, especially under `02_设计说明/` and `03_研制计划/`, should default to Chinese-first titles and section headings when the main audience is Chinese-reading collaborators.
+- New stable docs, especially under `02_设计说明/` and `04_研制计划/`, should default to Chinese-first titles and section headings when the main audience is Chinese-reading collaborators.
 - If an English technical term, acronym, or product word must appear in a title or key heading, include a Chinese counterpart in the same title or heading, for example `运行时资源覆盖（Runtime Override）`.
 - In design docs, plans, and other long-form collaboration docs, the first occurrence of a non-obvious English term should normally appear as a Chinese-English pair or English-Chinese pair once; after that, a single form may be used consistently.
 - Avoid creating stable collaboration docs whose titles are English-only or acronym-only unless the user explicitly asks for English-first documentation.
@@ -279,24 +279,31 @@ Then place project artifacts under that root:
 - root stable docs:
   - `README.md`
   - `00-本地工程策略映射.md`
+    - must explicitly state the documentation-governance basis
+    - must name the absorbed standard-control families
+    - must state whether the project also has a standard-projection layer
 - `01_需求分析/`
   - product boundaries, overall analysis, requirement convergence
 - `02_设计说明/`
   - stable design docs
   - flat by default; do not create a subdirectory when a theme contains only one file
-- `03_研制计划/`
+- `03_规范与流程/`
+  - shared data specs, key flows, design-implementation mapping, and other long-lived cross-node rules
+  - add numbered second-level theme folders only when there are multiple stable subjects
+- `04_研制计划/`
   - flat WBS node docs
   - one node, one file
   - naming: `NN-WBS-节点编号-主题-研制计划.md`
-- `04_研发文档/`
-  - data structure drafts, business flows, import/export specs, and other implementation-facing docs
-  - add numbered second-level theme folders only when there are multiple stable subjects
-- `05_测试文档/`
+- `05_节点合同/`
+  - one node, one execution contract when the project uses local WBS-node contracts
+  - naming: `NN(.NN)-节点编号-主题-节点合同.md`
+- `06_测试文档/`
   - `01_自测报告/`
-  - `02_验收清单/`
+  - `02_验收大纲/`
   - `03_验收记录/`
   - `04_验收结论/`
-- `06_过程文档/`
+  - `05_验收清单/`
+- `07_过程文档/`
   - `01_会话交接/`
   - `02_历史计划/`
   - add later numbered process folders such as `03_验收意见处理/` only when needed
@@ -312,27 +319,33 @@ The startup skeleton should create or align these outputs:
 1. root stable docs
    - `README.md`
    - `00-本地工程策略映射.md`
+     - include the documentation-governance basis
+     - include the standard-boundary statement
 2. overall analysis doc
    - `01_需求分析/00-工程总体分析.md`
-3. six-class document skeleton
+3. seven-class document skeleton
    - `01_需求分析/`
    - `02_设计说明/`
-   - `03_研制计划/`
-   - `04_研发文档/`
-   - `05_测试文档/`
-   - `06_过程文档/`
+   - `03_规范与流程/`
+   - `04_研制计划/`
+   - `05_节点合同/`
+   - `06_测试文档/`
+   - `07_过程文档/`
 4. WBS root plan doc
-   - for example `03_研制计划/01-WBS-0-<project>-研发总纲-研制计划.md`
+   - for example `04_研制计划/01-WBS-0-<project>-研发总纲-研制计划.md`
 5. current active node plan doc
-   - another `03_研制计划/NN-WBS-节点编号-主题-研制计划.md`
-6. test evidence directories
-   - `05_测试文档/01_自测报告/`
-   - `05_测试文档/02_验收清单/`
-   - `05_测试文档/03_验收记录/`
-   - `05_测试文档/04_验收结论/`
-7. process directories
-   - `06_过程文档/01_会话交接/`
-   - `06_过程文档/02_历史计划/`
+   - another `04_研制计划/NN-WBS-节点编号-主题-研制计划.md`
+6. current active node contract doc when local node contracts are enabled
+   - for example `05_节点合同/NN-WBS-节点编号-主题-节点合同.md`
+7. test evidence directories
+   - `06_测试文档/01_自测报告/`
+   - `06_测试文档/02_验收大纲/`
+   - `06_测试文档/05_验收清单/`
+   - `06_测试文档/03_验收记录/`
+   - `06_测试文档/04_验收结论/`
+8. process directories
+   - `07_过程文档/01_会话交接/`
+   - `07_过程文档/02_历史计划/`
    - extra numbered process folders only when needed
 
 If the project already contains similar files, align them to this structure instead of duplicating them.
@@ -383,19 +396,21 @@ Acceptance-related artifacts must be isolated from other project docs.
 
 Create or reuse these directories under the local doc root:
 
-- `05_测试文档/01_自测报告/`
-- `05_测试文档/02_验收清单/`
-- `05_测试文档/03_验收记录/`
-- `05_测试文档/04_验收结论/`
-- `06_过程文档/01_会话交接/`
+- `06_测试文档/01_自测报告/`
+- `06_测试文档/02_验收大纲/`
+- `06_测试文档/05_验收清单/`
+- `06_测试文档/03_验收记录/`
+- `06_测试文档/04_验收结论/`
+- `07_过程文档/01_会话交接/`
 
 Place the following artifact classes only in their matching directory:
 
-- self-test reports -> `05_测试文档/01_自测报告/`
-- acceptance checklists -> `05_测试文档/02_验收清单/`
-- acceptance records -> `05_测试文档/03_验收记录/`
-- acceptance conclusion records -> `05_测试文档/04_验收结论/`
-- handoff records -> `06_过程文档/01_会话交接/`
+- self-test reports -> `06_测试文档/01_自测报告/`
+- acceptance outlines -> `06_测试文档/02_验收大纲/`
+- acceptance checklists -> `06_测试文档/05_验收清单/`
+- acceptance records -> `06_测试文档/03_验收记录/`
+- acceptance conclusion records -> `06_测试文档/04_验收结论/`
+- handoff records -> `07_过程文档/01_会话交接/`
 
 Acceptance-related filenames must include both date and time so multiple artifacts can exist on the same day.
 

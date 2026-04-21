@@ -25,6 +25,8 @@ Create or align the following outputs under the project-local doc root.
    - roadmap location
 2. `00-本地工程策略映射.md`
    - local doc root decision
+   - documentation-governance basis
+   - standard-boundary statement
    - tracker URL or tool location
    - issue contract policy
    - project-specific constraints
@@ -39,36 +41,72 @@ Create or align:
 
 1. `01_需求分析/`
 2. `02_设计说明/`
-3. `03_研制计划/`
-4. `04_研发文档/`
-5. `05_测试文档/`
-6. `06_过程文档/`
+3. `03_规范与流程/`
+4. `04_研制计划/`
+5. `05_节点合同/`
+6. `06_测试文档/`
+7. `07_过程文档/`
 
 Rules:
 
 1. `02_设计说明/` stores design正文 directly by default; do not create a subdirectory when a theme has only one file.
-2. `03_研制计划/` stores WBS node docs flatly; one node keeps one file.
-3. `03_研制计划/` files use: `NN-WBS-节点编号-主题-研制计划.md`.
-4. If a category needs second-level folders, those folders also use stable numeric prefixes.
-5. For Chinese-reading teams, new stable doc titles and major headings should default to Chinese-first wording.
-6. If a title must contain an English technical term, acronym, or product word, add the Chinese counterpart in the same title or main heading at least once.
+2. `03_规范与流程/` stores shared specs, key flows, and mapping docs that cannot be reduced to a single node.
+3. `04_研制计划/` stores WBS node docs flatly; one node keeps one file.
+4. `04_研制计划/` files use: `NN-WBS-节点编号-主题-研制计划.md`.
+5. `05_节点合同/` stores single-node execution contracts when the project adopts local node contracts.
+6. `05_节点合同/` files use: `NN(.NN)-节点编号-主题-节点合同.md`.
+7. If a category needs second-level folders, those folders also use stable numeric prefixes.
+8. For Chinese-reading teams, new stable doc titles and major headings should default to Chinese-first wording.
+9. If a title must contain an English technical term, acronym, or product word, add the Chinese counterpart in the same title or main heading at least once.
+
+### 2.2A Documentation-governance basis
+
+Every project that adopts this strategy must record its documentation-governance basis in `00-本地工程策略映射.md`.
+
+At minimum, write:
+
+1. which standard-control families are being absorbed
+   - recommended default set:
+     - `ISO/IEC/IEEE 12207`
+     - `ISO/IEC/IEEE 15289`
+     - `ISO/IEC/IEEE 16326`
+     - `ISO/IEC/IEEE 29148`
+     - `ISO/IEC/IEEE 29119`
+     - `IEEE 1016`
+2. whether the local doc root is:
+   - the project's R&D-layer formal doc root
+   - or a direct standard-delivery package
+3. whether the project also maintains a standard-projection layer
+   - for example an industry, customer, or defense-delivery projection layer
+4. which local extension doc classes are enabled
+   - for example `05_节点合同/`, `06_测试文档/02_验收大纲/`, `06_测试文档/05_验收清单/`
+5. why each local extension exists
+   - explain the responsibility gap it fills instead of leaving the reason implicit
+
+Rules:
+
+1. The seven-class local taxonomy is a standard-compatible local engineering taxonomy, not a literal copy of any single original standard directory.
+2. If a project needs a more formal customer-facing or standard-facing package later, create a projection layer on top of the local formal doc root instead of deforming the local engineering taxonomy first.
 
 ### 2.3 Required second-level directories
 
 Create or align:
 
-1. `05_测试文档/01_自测报告/`
-2. `05_测试文档/02_验收清单/`
-3. `05_测试文档/03_验收记录/`
-4. `05_测试文档/04_验收结论/`
-5. `06_过程文档/01_会话交接/`
-6. `06_过程文档/02_历史计划/`
+1. `06_测试文档/01_自测报告/`
+2. `06_测试文档/02_验收大纲/`
+3. `06_测试文档/03_验收记录/`
+4. `06_测试文档/04_验收结论/`
+5. `06_测试文档/05_验收清单/`
+6. `07_过程文档/01_会话交接/`
+7. `07_过程文档/02_历史计划/`
 
 Optional:
 
-1. `04_研发文档/01_数据规范/`
-2. `04_研发文档/02_关键流程/`
-3. `06_过程文档/03_验收意见处理/`
+1. `03_规范与流程/01_数据规范/`
+2. `03_规范与流程/02_关键流程/`
+3. `03_规范与流程/03_设计实现映射/`
+4. `03_规范与流程/04_原型与附图/`
+5. `07_过程文档/03_验收意见处理/`
 
 ## 3. Tracker bootstrap
 
@@ -181,7 +219,7 @@ In GitHub collaboration surfaces (Issue/Project/PR), use repository-relative pat
 
 Examples:
 
-1. `DOC/CODEX_DOC/03_研制计划/01-WBS-0-<project>-研发总纲-研制计划.md`
+1. `DOC/CODEX_DOC/04_研制计划/01-WBS-0-<project>-研发总纲-研制计划.md`
 2. `src/server/routes.js`
 
 If collaborators need clickable links, add repository URLs:
@@ -197,7 +235,8 @@ Minimum expectation after each real work round:
 1. run meaningful validation
 2. create or update self-test record
 3. create or update acceptance checklist
-4. create or update handoff record
+4. create or update acceptance outline when the node baseline changes or is first introduced
+5. create or update handoff record
 
 Acceptance files should use timestamped naming.
 
@@ -214,14 +253,15 @@ When adopting this template in a new project, perform this order:
 
 1. inspect repo structure and current worktree
 2. choose or create local doc root
-3. create the six-class numbered directory skeleton
+3. create the seven-class numbered directory skeleton
 4. write `README.md`
 5. write `00-本地工程策略映射.md`
 6. write `01_需求分析/00-工程总体分析.md`
-7. write the initial `03_研制计划/` node docs
-8. create test and process subdirectories under `05_测试文档/` and `06_过程文档/`
-9. create tracker if needed
-10. link tracker and local docs together
+7. write the initial `04_研制计划/` node docs
+8. seed the initial `05_节点合同/` node contracts when the project uses local node contracts
+9. create test and process subdirectories under `06_测试文档/` and `07_过程文档/`
+10. create tracker if needed
+11. link tracker and local docs together
 
 ## 9. Retrofit rule for existing projects
 
@@ -230,5 +270,5 @@ If the project already contains docs or task structures:
 1. do not duplicate equivalent docs
 2. normalize names and responsibilities gradually
 3. flatten single-file topic directories when they add no classification value
-4. archive obsolete detailed plans into `06_过程文档/02_历史计划/` instead of deleting history blindly
+4. archive obsolete detailed plans into `07_过程文档/02_历史计划/` instead of deleting history blindly
 5. prefer alignment over large one-shot rewrites
