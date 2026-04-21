@@ -35,6 +35,7 @@ Use this skill when the user wants engineering work to follow a repeatable proje
 - Keep changes scoped to the current slice.
 - Avoid unrelated refactors.
 - Prefer real runtime validation over paper reasoning.
+- Before changing GitHub Project, GitLab boards, or another remote collaboration surface, first confirm that the surface is formally adopted and that schema mutation is allowed in this round.
 - In strategy discussion, architecture comparison, planning advice, or process recommendations, default to critical evaluation grounded in facts, constraints, observed evidence, and explicit assumptions, not agreement-seeking.
 - Do not let the user's preferred answer, leading phrasing, repetition, or confidence level override technical judgment.
 - If a user-proposed direction appears weak, risky, internally inconsistent, or under-evidenced, say so directly and explain why instead of manufacturing supporting reasons for it.
