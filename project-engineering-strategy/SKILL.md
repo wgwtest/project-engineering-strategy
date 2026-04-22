@@ -57,7 +57,7 @@ The exception chapters are:
 
 ### Before work
 
-- Read the latest handoff document, current plan, the current acceptance main entry or package acceptance entry when the project uses the structured acceptance-entry layout, and recent test or self-test reports.
+- Read the latest handoff document, current plan, the current acceptance main entry or package acceptance entry when the project uses the structured acceptance-entry layout, and recent machine-test records or equivalent recent test evidence.
 - Inspect the worktree before editing.
 - State the round goal, non-goals, and validation method.
 
@@ -348,11 +348,11 @@ Then place project artifacts under that root:
   - one node, one execution contract when the project uses local WBS-node contracts
   - naming: `NN(.NN)-节点编号-主题-节点合同.md`
 - `06_测试文档/`
-  - `01_自测报告/`
-  - `02_验收大纲/`
-  - `03_验收记录/`
-  - `04_验收结论/`
-  - `05_验收清单/`
+  - `01_验收大纲/`
+  - `02_验收入口/`
+  - `03_机测记录/`
+  - `04_人测记录/`
+  - `05_验收结论/`
 - `07_过程文档/`
   - `01_会话交接/`
   - `02_历史计划/`
@@ -388,11 +388,11 @@ The startup skeleton should create or align these outputs:
 6. current active node contract doc when local node contracts are enabled
    - for example `05_节点合同/NN-WBS-节点编号-主题-节点合同.md`
 7. test evidence directories
-   - `06_测试文档/01_自测报告/`
-   - `06_测试文档/02_验收大纲/`
-   - `06_测试文档/05_验收清单/`
-   - `06_测试文档/03_验收记录/`
-   - `06_测试文档/04_验收结论/`
+   - `06_测试文档/01_验收大纲/`
+   - `06_测试文档/02_验收入口/`
+   - `06_测试文档/03_机测记录/`
+   - `06_测试文档/04_人测记录/`
+   - `06_测试文档/05_验收结论/`
 8. process directories
    - `07_过程文档/01_会话交接/`
    - `07_过程文档/02_历史计划/`
@@ -446,33 +446,38 @@ Acceptance-related artifacts must be isolated from other project docs.
 
 Create or reuse these directories under the local doc root:
 
-- `06_测试文档/01_自测报告/`
-- `06_测试文档/02_验收大纲/`
-- `06_测试文档/05_验收清单/`
-- `06_测试文档/03_验收记录/`
-- `06_测试文档/04_验收结论/`
+- `06_测试文档/01_验收大纲/`
+- `06_测试文档/02_验收入口/`
+- `06_测试文档/03_机测记录/`
+- `06_测试文档/04_人测记录/`
+- `06_测试文档/05_验收结论/`
 - `07_过程文档/01_会话交接/`
 
 Place the following artifact classes only in their matching directory:
 
-- self-test reports -> `06_测试文档/01_自测报告/`
-- acceptance outlines -> `06_测试文档/02_验收大纲/`
-- acceptance checklists -> `06_测试文档/05_验收清单/`
-- acceptance records -> `06_测试文档/03_验收记录/`
-- acceptance conclusion records -> `06_测试文档/04_验收结论/`
+- acceptance outlines -> `06_测试文档/01_验收大纲/`
+- acceptance entries -> `06_测试文档/02_验收入口/`
+- machine-test records -> `06_测试文档/03_机测记录/`
+- human-test records -> `06_测试文档/04_人测记录/`
+- acceptance conclusion records -> `06_测试文档/05_验收结论/`
 - handoff records -> `07_过程文档/01_会话交接/`
 
-Acceptance-related filenames must include both date and time so multiple artifacts can exist on the same day.
+An acceptance entry is not just a navigation page. It is the executable, annotatable acceptance document that may also serve as the human-acceptance fact source for the current round.
+
+Timestamp-first naming is required for machine-test, human-test, acceptance-conclusion, and handoff files so multiple artifacts can exist on the same day.
 
 Required filename pattern:
 
-- `YYYY-MM-DD-HHMMSS-主题自测.md`
-- `YYYY-MM-DD-HHMMSS-主题验收清单.md`
-- `YYYY-MM-DD-HHMMSS-主题验收记录.md`
+- `YYYY-MM-DD-HHMMSS-主题-机测记录.md`
+- `00-验收主入口.md`
+- `01_当前待验收/<WBS包节点>/00-<WBS编码>-当前验收入口.md`
+- `01_当前待验收/<WBS包节点>/<WBS编码>-主题-验收入口.md`
+- `01_当前待验收/<WBS包节点>/SETTING-范围名-验收入口.md`
+- `YYYY-MM-DD-HHMMSS-主题-人测记录.md`
 - `YYYY-MM-DD-HHMMSS-主题验收结论.md`
 - `YYYY-MM-DD-HHMMSS-主题交接.md`
 
-Do not create self-test, acceptance, or handoff files directly in the doc root.
+Do not create machine-test, acceptance, or handoff files directly in the doc root.
 
 ## Validation rule
 
