@@ -12,6 +12,28 @@ Bootstrap a project so that:
 4. schedule view and long-form documentation are separated
 5. document categories and naming stay consistent across projects
 
+## 1A. Mother-model alignment
+
+When a project adopts this strategy, align the working conventions to the same 12 mother strategies used by the canonical engineering strategy:
+
+1. `本地文档治理`
+2. `远端协作与工程跟踪治理（Tracker）`
+3. `WBS 与计划治理`
+4. `任务执行约定治理`
+5. `状态机与关闭门`
+6. `主目录与隔离工作区治理（Worktree）`
+7. `事实源判定与同步治理`
+8. `验证、验收与证据治理`
+9. `会话交接与多轮协同`
+10. `架构治理`
+11. `改动边界与兼容风险`
+12. `版本发布与对外导出`
+
+Default rule:
+
+1. sections `1-9` are expected to fit the standard six-part governance skeleton
+2. `10-12` may use dedicated section structures when that produces cleaner guidance
+
 ## 2. Startup outputs
 
 Create or align the following outputs under the project-local doc root.
@@ -96,9 +118,12 @@ Create or align:
 2. `06_测试文档/02_验收大纲/`
 3. `06_测试文档/03_验收记录/`
 4. `06_测试文档/04_验收结论/`
-5. `06_测试文档/05_验收清单/`
-6. `07_过程文档/01_会话交接/`
-7. `07_过程文档/02_历史计划/`
+5. `06_测试文档/05_验收清单/00_当前主入口/`
+6. `06_测试文档/05_验收清单/01_当前待验收/`
+7. `06_测试文档/05_验收清单/99_历史归档/WBS/`
+8. `06_测试文档/05_验收清单/99_历史归档/SETTING/`
+9. `07_过程文档/01_会话交接/`
+10. `07_过程文档/02_历史计划/`
 
 Optional:
 
@@ -257,14 +282,27 @@ Minimum expectation after each real work round:
 4. create or update acceptance outline when the node baseline changes or is first introduced
 5. create or update handoff record
 
-Acceptance files should use timestamped naming.
+Acceptance assets should use mixed naming:
+
+1. self-test / acceptance record / acceptance conclusion keep timestamp-first naming
+2. current active acceptance checklists use entry-first, node-first naming
+3. archived acceptance checklists may keep timestamp-first naming
 
 Recommended patterns:
 
 1. `YYYY-MM-DD-HHMMSS-主题自测.md`
-2. `YYYY-MM-DD-HHMMSS-主题验收清单.md`
-3. `YYYY-MM-DD-HHMMSS-主题验收记录.md`
-4. `YYYY-MM-DD-HHMMSS-主题验收结论.md`
+2. `00_当前主入口/00-验收主入口.md`
+3. `01_当前待验收/<WBS包节点>/00-<WBS编码>-当前验收入口.md`
+4. `01_当前待验收/<WBS包节点>/<WBS编码>-主题-验收清单.md`
+5. `01_当前待验收/<WBS包节点>/SETTING-范围名-验收清单.md`
+6. `YYYY-MM-DD-HHMMSS-主题验收记录.md`
+7. `YYYY-MM-DD-HHMMSS-主题验收结论.md`
+
+Rules:
+
+1. do not place current active acceptance checklist files directly at the root of `05_验收清单/`
+2. use package-node directories under `01_当前待验收/` as the current acceptance container
+3. move replaced or closed checklist rounds into `99_历史归档/WBS/` or `99_历史归档/SETTING/`
 
 ## 8. First-session bootstrap checklist
 

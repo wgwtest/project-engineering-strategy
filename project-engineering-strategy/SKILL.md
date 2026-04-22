@@ -7,6 +7,38 @@ description: Use when the user wants a code project to follow a stable engineeri
 
 Use this skill when the user wants engineering work to follow a repeatable project strategy rather than ad hoc edits.
 
+## Mother model rule
+
+Treat the canonical strategy as a 12-section mother model. By default, sections `1-9` use the same six-part structure:
+
+- `目标与边界`
+- `事实源`
+- `强制执行门`
+- `同步义务`
+- `例外或降级规则`
+- `产物与证据`
+
+The current mother-model chapters are:
+
+1. `本地文档治理`
+2. `远端协作与工程跟踪治理（Tracker）`
+3. `WBS 与计划治理`
+4. `任务执行约定治理`
+5. `状态机与关闭门`
+6. `主目录与隔离工作区治理（Worktree）`
+7. `事实源判定与同步治理`
+8. `验证、验收与证据治理`
+9. `会话交接与多轮协同`
+10. `架构治理`
+11. `改动边界与兼容风险`
+12. `版本发布与对外导出`
+
+The exception chapters are:
+
+- `架构治理`
+- `改动边界与兼容风险`
+- `版本发布与对外导出`
+
 ## Related skill availability reminder
 
 - Before relying on another skill's workflow, check the current session's available skill list.
@@ -25,7 +57,7 @@ Use this skill when the user wants engineering work to follow a repeatable proje
 
 ### Before work
 
-- Read the latest handoff document, current plan, latest acceptance checklist from the acceptance artifact directory, and recent test or self-test reports.
+- Read the latest handoff document, current plan, the current acceptance main entry or package acceptance entry when the project uses the structured acceptance-entry layout, and recent test or self-test reports.
 - Inspect the worktree before editing.
 - State the round goal, non-goals, and validation method.
 
