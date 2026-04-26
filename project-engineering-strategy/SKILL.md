@@ -1,6 +1,6 @@
 ---
 name: project-engineering-strategy
-description: Use when the user wants a code project to follow a stable engineering work strategy across sessions or repositories, especially for handoff-first execution, model/contracts before UI, acceptance and self-test artifacts, tracker or issue coordination, doc-root conventions, and worktree synchronization rules.
+description: Use when the user wants a code project to follow a stable engineering work strategy across sessions or repositories, especially for handoff-first execution, model/contracts before UI, prototype-based visual acceptance, tracker or issue coordination, doc-root conventions, and worktree synchronization rules.
 ---
 
 # Project Engineering Strategy
@@ -57,9 +57,10 @@ The exception chapters are:
 
 ### Before work
 
-- Read the latest handoff document, current plan, the current acceptance main entry or package acceptance entry when the project uses the structured acceptance-entry layout, and recent machine-test records or equivalent recent test evidence.
+- Read the latest handoff document, current plan, the current acceptance main entry and current node acceptance method, and recent machine-test records or equivalent recent test evidence.
 - Inspect the worktree before editing.
 - State the round goal, non-goals, and validation method.
+- For UI or page work, determine whether a design, mockup, sample, prototype image, HTML prototype, or approved visual effect exists; if yes, name it as an implementation fact source before coding.
 
 ### During work
 
@@ -67,6 +68,7 @@ The exception chapters are:
 - Keep changes scoped to the current slice.
 - Avoid unrelated refactors.
 - Prefer real runtime validation over paper reasoning.
+- If a page has an approved design/prototype/effect image, treat it as part of the implementation standard, not as optional inspiration; do not replace screenshot comparison with subjective judgment or old runtime-page continuation.
 - Before changing GitHub Project, GitLab boards, or another remote collaboration surface, first confirm that the surface is formally adopted and that schema mutation is allowed in this round.
 - In strategy discussion, architecture comparison, planning advice, or process recommendations, default to critical evaluation grounded in facts, constraints, observed evidence, and explicit assumptions, not agreement-seeking.
 - Do not let the user's preferred answer, leading phrasing, repetition, or confidence level override technical judgment.
@@ -81,6 +83,7 @@ The exception chapters are:
 ### After work
 
 - Run the smallest meaningful static and runtime validation.
+- For UI or page work with an approved design/prototype/effect image, produce prototype screenshot + runtime screenshot + comparison conclusion before claiming completion or asking for acceptance.
 - When there are actual changes, create or update:
   - acceptance checklist
   - acceptance record or self-test report
@@ -300,8 +303,21 @@ When a task reaches `已自测` or `待人工验收`, its execution contract sho
 - the self-test report
 - the acceptance checklist
 - the handoff record
+- for prototype-backed UI work, the screenshot comparison record
 
 This keeps schedule view, execution contract, and verification evidence connected without duplicating long-form content.
+
+### Prototype visual acceptance rule
+
+For any page or UI feature with an existing design draft, sample image, static prototype, HTML prototype, or approved effect screenshot:
+
+- The design/prototype is an implementation standard and must be named in the plan, task contract, or handoff.
+- Before coding, record the source artifact, target route, page owner/app, main business object, allowed deviations, and unacceptable deviations.
+- Before completion, capture the real runtime page from a running system and compare it with the source design/prototype.
+- Required evidence is: source prototype screenshot, runtime screenshot, and a written comparison conclusion.
+- Passing automated tests, type checks, builds, route `200 OK`, or verbal “looks close” claims are not substitutes for screenshot comparison.
+- Minor differences in real data, image assets, font rendering, local spacing, and color brightness may pass; page structure, core blocks, action entry points, visual hierarchy, and object semantics must match.
+- If browser automation fails, timebox and retry once; if still blocked, record the blockage and provide the strongest available fallback evidence, but do not call visual acceptance complete unless reliable visual evidence exists.
 
 ### Browser/MCP fallback rule
 
@@ -456,13 +472,13 @@ Create or reuse these directories under the local doc root:
 Place the following artifact classes only in their matching directory:
 
 - acceptance outlines -> `06_测试文档/01_验收大纲/`
-- acceptance entries -> `06_测试文档/02_验收入口/`
+- acceptance main entry and methods -> `06_测试文档/02_验收入口/`
 - machine-test records -> `06_测试文档/03_机测记录/`
 - human-test records -> `06_测试文档/04_人测记录/`
 - acceptance conclusion records -> `06_测试文档/05_验收结论/`
 - handoff records -> `07_过程文档/01_会话交接/`
 
-An acceptance entry is not just a navigation page. It is the executable, annotatable acceptance document that may also serve as the human-acceptance fact source for the current round.
+The acceptance entry layer is not the executable document itself. `00-验收主入口.md` is the user-facing access file, while `验收方法` is the executable, annotatable document that may also serve as the human-acceptance fact source for the current round.
 
 Timestamp-first naming is required for machine-test, human-test, acceptance-conclusion, and handoff files so multiple artifacts can exist on the same day.
 
@@ -470,9 +486,8 @@ Required filename pattern:
 
 - `YYYY-MM-DD-HHMMSS-主题-机测记录.md`
 - `00-验收主入口.md`
-- `01_当前待验收/<WBS包节点>/00-<WBS编码>-当前验收入口.md`
-- `01_当前待验收/<WBS包节点>/<WBS编码>-主题-验收入口.md`
-- `01_当前待验收/<WBS包节点>/SETTING-范围名-验收入口.md`
+- `<WBS编码>-主题-验收方法.md`
+- `SETTING-范围名-验收方法.md`
 - `YYYY-MM-DD-HHMMSS-主题-人测记录.md`
 - `YYYY-MM-DD-HHMMSS-主题验收结论.md`
 - `YYYY-MM-DD-HHMMSS-主题交接.md`

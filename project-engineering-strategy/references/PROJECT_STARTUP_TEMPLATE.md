@@ -101,7 +101,7 @@ At minimum, write:
 3. whether the project also maintains a standard-projection layer
    - for example an industry, customer, or defense-delivery projection layer
 4. which local extension doc classes are enabled
-   - for example `05_节点合同/`, `06_测试文档/02_验收大纲/`, `06_测试文档/05_验收清单/`
+   - for example `05_节点合同/`, `06_测试文档/01_验收大纲/`, `06_测试文档/02_验收入口/`
 5. why each local extension exists
    - explain the responsibility gap it fills instead of leaving the reason implicit
 
@@ -114,16 +114,14 @@ Rules:
 
 Create or align:
 
-1. `06_测试文档/01_自测报告/`
-2. `06_测试文档/02_验收大纲/`
-3. `06_测试文档/03_验收记录/`
-4. `06_测试文档/04_验收结论/`
-5. `06_测试文档/05_验收清单/00_当前主入口/`
-6. `06_测试文档/05_验收清单/01_当前待验收/`
-7. `06_测试文档/05_验收清单/99_历史归档/WBS/`
-8. `06_测试文档/05_验收清单/99_历史归档/SETTING/`
-9. `07_过程文档/01_会话交接/`
-10. `07_过程文档/02_历史计划/`
+1. `06_测试文档/01_验收大纲/`
+2. `06_测试文档/02_验收入口/`
+3. `06_测试文档/02_验收入口/99_历史归档/`
+4. `06_测试文档/03_机测记录/`
+5. `06_测试文档/04_人测记录/`
+6. `06_测试文档/05_验收结论/`
+7. `07_过程文档/01_会话交接/`
+8. `07_过程文档/02_历史计划/`
 
 Optional:
 
@@ -277,32 +275,37 @@ Do not place workstation absolute paths such as `/home/...` in shared tracker ar
 Minimum expectation after each real work round:
 
 1. run meaningful validation
-2. create or update self-test record
-3. create or update acceptance checklist
+2. create or update machine-test record
+3. create or update acceptance method and the acceptance main entry
 4. create or update acceptance outline when the node baseline changes or is first introduced
 5. create or update handoff record
+6. for UI/page work with an existing design draft, sample image, static prototype, HTML prototype, or approved effect screenshot, create or update a screenshot-comparison acceptance method
 
 Acceptance assets should use mixed naming:
 
-1. self-test / acceptance record / acceptance conclusion keep timestamp-first naming
-2. current active acceptance checklists use entry-first, node-first naming
-3. archived acceptance checklists may keep timestamp-first naming
+1. machine-test / human-test / acceptance conclusion files keep timestamp-first naming
+2. the current active root entry file is `00-验收主入口.md`
+3. current active executable docs use node-first `*-验收方法.md` naming
+4. archived acceptance entry or method files may keep timestamp-first naming or preserved legacy naming
 
 Recommended patterns:
 
-1. `YYYY-MM-DD-HHMMSS-主题自测.md`
-2. `00_当前主入口/00-验收主入口.md`
-3. `01_当前待验收/<WBS包节点>/00-<WBS编码>-当前验收入口.md`
-4. `01_当前待验收/<WBS包节点>/<WBS编码>-主题-验收清单.md`
-5. `01_当前待验收/<WBS包节点>/SETTING-范围名-验收清单.md`
-6. `YYYY-MM-DD-HHMMSS-主题验收记录.md`
-7. `YYYY-MM-DD-HHMMSS-主题验收结论.md`
+1. `YYYY-MM-DD-HHMMSS-主题-机测记录.md`
+2. `00-验收主入口.md`
+3. `<WBS编码>-<主题>-验收方法.md`
+4. `SETTING-<范围名>-验收方法.md`
+6. `YYYY-MM-DD-HHMMSS-主题-人测记录.md`
+7. `YYYY-MM-DD-HHMMSS-主题-验收结论.md`
 
 Rules:
 
-1. do not place current active acceptance checklist files directly at the root of `05_验收清单/`
-2. use package-node directories under `01_当前待验收/` as the current acceptance container
-3. move replaced or closed checklist rounds into `99_历史归档/WBS/` or `99_历史归档/SETTING/`
+1. treat `02_验收入口/` as the acceptance access layer; the executable, annotatable doc for the current round is `验收方法`
+2. the active `验收方法` may also serve as the human-acceptance fact source when the user writes explicit annotations on it
+3. do not create extra current package-entry layers by default; the root-level current files are `00-验收主入口.md` plus `*-验收方法.md`
+4. move replaced or closed entry rounds into `99_历史归档/`
+5. preserve legacy directory shapes inside `99_历史归档/` only when that helps historical backtracking
+6. if an implementation is backed by UI prototypes or effect images, the acceptance method must require source prototype screenshot, real runtime screenshot, and a written comparison conclusion
+7. automated tests, builds, route availability, or verbal visual judgment cannot replace prototype-to-runtime screenshot comparison for prototype-backed pages
 
 ## 8. First-session bootstrap checklist
 
