@@ -10,7 +10,8 @@ Bootstrap a project so that:
 2. the execution contract is explicit
 3. the acceptance and handoff evidence has a fixed home
 4. schedule view and long-form documentation are separated
-5. document categories and naming stay consistent across projects
+5. prototype images, source files, design basis, and review status have a fixed versioned home
+6. document categories and naming stay consistent across projects
 
 ## 1A. Mother-model alignment
 
@@ -68,6 +69,7 @@ Create or align:
 5. `05_节点合同/`
 6. `06_测试文档/`
 7. `07_过程文档/`
+8. `08_原型与附图/`
 
 Rules:
 
@@ -80,6 +82,8 @@ Rules:
 7. If a category needs second-level folders, those folders also use stable numeric prefixes.
 8. For Chinese-reading teams, new stable doc titles and major headings should default to Chinese-first wording.
 9. If a title must contain an English technical term, acronym, or product word, add the Chinese counterpart in the same title or main heading at least once.
+10. Current formal prototypes and effect images default to `08_原型与附图/`, not to `03_规范与流程/`.
+11. If an existing project deliberately keeps prototypes under another path such as `03_规范与流程/04_原型与附图/`, record that exception in `00-本地工程策略映射.md`.
 
 ### 2.2A Documentation-governance basis
 
@@ -101,9 +105,10 @@ At minimum, write:
 3. whether the project also maintains a standard-projection layer
    - for example an industry, customer, or defense-delivery projection layer
 4. which local extension doc classes are enabled
-   - for example `05_节点合同/`, `06_测试文档/01_验收大纲/`, `06_测试文档/02_验收入口/`
+   - for example `05_节点合同/`, `06_测试文档/01_验收大纲/`, `06_测试文档/02_验收入口/`, `08_原型与附图/`
 5. why each local extension exists
    - explain the responsibility gap it fills instead of leaving the reason implicit
+6. where formal prototypes, effect images, original source images, and historical prototype reviews are stored
 
 Rules:
 
@@ -122,14 +127,55 @@ Create or align:
 6. `06_测试文档/05_验收结论/`
 7. `07_过程文档/01_会话交接/`
 8. `07_过程文档/02_历史计划/`
+9. `07_过程文档/05_历史原型与评审记录/`
+10. `08_原型与附图/`
 
 Optional:
 
 1. `03_规范与流程/01_数据规范/`
 2. `03_规范与流程/02_关键流程/`
 3. `03_规范与流程/03_设计实现映射/`
-4. `03_规范与流程/04_原型与附图/`
-5. `07_过程文档/03_验收意见处理/`
+4. `07_过程文档/03_验收意见处理/`
+
+### 2.4 Prototype package bootstrap
+
+When the project needs UI prototypes, effect images, page screenshots, Canvas mockups, or design images for user review, create versioned prototype packages under the formal prototype root.
+
+Default current root:
+
+`08_原型与附图/`
+
+Default history root:
+
+`07_过程文档/05_历史原型与评审记录/`
+
+Each prototype version uses:
+
+`YYYY-MM-DD-HHMMSS-<project-or-scope>-<prototype-theme>-vN/`
+
+Each version package must contain:
+
+1. `README.md`
+   - image-text review entry
+   - target artboard size and screenshot viewport
+   - design basis for every image
+   - review status
+   - allowed and unacceptable deviations
+   - regeneration commands
+2. `source/`
+   - editable HTML / CSS / JS / scripts / configuration or other reproducible source files
+3. rendered review images in the package root
+4. `original/` or `source/original/` when user-provided images, PDFs, upstream screenshots, or other raw materials exist
+5. `REVIEW_RESPONSE.md` when the version is a response to review feedback
+
+Do not ask the user to review image-only prototypes without a README design basis.
+
+Default artboard rule:
+
+1. full desktop page prototypes use a `1920 x 1080` `16:9` artboard unless the project records a different target device or container
+2. screenshots must be captured at the declared artboard size
+3. if a prototype uses Canvas, floating layouts, drawers, bottom rails, or relationship maps, reserve layout space for fixed panels and record the canvas safe area
+4. before review, inspect the actual screenshot for overlap, clipping, wrong aspect ratio, text overflow, and hidden main objects; file dimensions alone are not enough
 
 ## 3. Tracker bootstrap
 
@@ -306,6 +352,8 @@ Rules:
 5. preserve legacy directory shapes inside `99_历史归档/` only when that helps historical backtracking
 6. if an implementation is backed by UI prototypes or effect images, the acceptance method must require source prototype screenshot, real runtime screenshot, and a written comparison conclusion
 7. automated tests, builds, route availability, or verbal visual judgment cannot replace prototype-to-runtime screenshot comparison for prototype-backed pages
+8. if the current round creates or revises prototypes, the machine-test and handoff records must cite the prototype package README, source files, rendered images, and current review status
+9. if the current round creates or revises full-page desktop prototypes, the machine-test record must confirm the declared artboard size, actual screenshot dimensions, and visual self-check result
 
 ## 8. First-session bootstrap checklist
 
@@ -314,14 +362,16 @@ When adopting this template in a new project, perform this order:
 1. inspect repo structure and current worktree
 2. choose or create local doc root
 3. create the seven-class numbered directory skeleton
-4. write `README.md`
-5. write `00-本地工程策略映射.md`
-6. write `01_需求分析/00-工程总体分析.md`
-7. write the initial `04_研制计划/` node docs
-8. seed the initial `05_节点合同/` node contracts when the project uses local node contracts
-9. create test and process subdirectories under `06_测试文档/` and `07_过程文档/`
-10. create tracker if needed
-11. link tracker and local docs together
+4. write the repository-root Codex/session startup guide, such as `CODEX_START_HERE.md`, when repeated Codex sessions or worktrees are expected
+5. write `README.md`
+6. write `00-本地工程策略映射.md`
+7. write `01_需求分析/00-工程总体分析.md`
+8. write the initial `04_研制计划/` node docs
+9. seed the initial `05_节点合同/` node contracts when the project uses local node contracts
+10. create test and process subdirectories under `06_测试文档/` and `07_过程文档/`
+11. create `08_原型与附图/` and the historical prototype review directory if UI or visual review is in scope
+12. create tracker if needed
+13. link tracker and local docs together
 
 ## 9. Retrofit rule for existing projects
 

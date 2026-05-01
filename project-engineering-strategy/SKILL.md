@@ -1,6 +1,6 @@
 ---
 name: project-engineering-strategy
-description: Use when the user wants a code project to follow a stable engineering work strategy across sessions or repositories, especially for handoff-first execution, model/contracts before UI, prototype-based visual acceptance, tracker or issue coordination, doc-root conventions, and worktree synchronization rules.
+description: Use when the user wants a code project to follow a stable engineering work strategy across sessions or repositories, especially for handoff-first execution, model/contracts before UI, prototype package governance, prototype-based visual acceptance, tracker or issue coordination, doc-root conventions, and worktree synchronization rules.
 ---
 
 # Project Engineering Strategy
@@ -57,10 +57,12 @@ The exception chapters are:
 
 ### Before work
 
+- If the repository root contains a Codex/session startup guide such as `CODEX_START_HERE.md`, read it before other project files and treat it as the fast recovery entry; if it conflicts with stable formal docs, the formal doc root still wins.
 - Read the latest handoff document, current plan, the current acceptance main entry and current node acceptance method, and recent machine-test records or equivalent recent test evidence.
 - Inspect the worktree before editing.
 - State the round goal, non-goals, and validation method.
 - For UI or page work, determine whether a design, mockup, sample, prototype image, HTML prototype, or approved visual effect exists; if yes, name it as an implementation fact source before coding.
+- For prototype creation, prototype refresh, or prototype-driven UI work, read `references/PROTOTYPE_PACKAGE_STANDARD.md` and determine the formal prototype root before creating files.
 
 ### During work
 
@@ -69,6 +71,8 @@ The exception chapters are:
 - Avoid unrelated refactors.
 - Prefer real runtime validation over paper reasoning.
 - If a page has an approved design/prototype/effect image, treat it as part of the implementation standard, not as optional inspiration; do not replace screenshot comparison with subjective judgment or old runtime-page continuation.
+- If creating or revising a prototype, create a versioned prototype package instead of loose images; every review image must have a written design basis in the package README.
+- Do not overwrite a reviewed prototype version for a new direction or material revision; create the next version folder and preserve or archive the previous version according to the prototype package rules.
 - Before changing GitHub Project, GitLab boards, or another remote collaboration surface, first confirm that the surface is formally adopted and that schema mutation is allowed in this round.
 - In strategy discussion, architecture comparison, planning advice, or process recommendations, default to critical evaluation grounded in facts, constraints, observed evidence, and explicit assumptions, not agreement-seeking.
 - Do not let the user's preferred answer, leading phrasing, repetition, or confidence level override technical judgment.
@@ -79,11 +83,13 @@ The exception chapters are:
 - Do not let browser automation or Chrome/DevTools MCP become a single-point blocker. Timebox browser attempts, retry at most once on the same path, then switch to non-browser evidence such as local file inspection, DOM assertions, CLI validation, regression pages, scripts, or network/API checks when possible.
 - Default to working, committing, and pushing on `main`; create a feature branch only when the user explicitly asks for isolation or the task needs high-risk experiment isolation.
 - Use isolated worktrees only when necessary; before any user-visible claim, user check path, service launch, formal doc update, or formal commit/push, sync user-visible outputs back to the main delivery directory.
+- For GitHub public skill releases, do not treat pushed tags as published releases by themselves; create the GitHub Release and verify the anonymous `releases/latest` API before reporting publication.
 
 ### After work
 
 - Run the smallest meaningful static and runtime validation.
 - For UI or page work with an approved design/prototype/effect image, produce prototype screenshot + runtime screenshot + comparison conclusion before claiming completion or asking for acceptance.
+- For newly generated prototypes, verify source files, rendered images, README design-basis coverage, and regeneration commands before asking for human review.
 - When there are actual changes, create or update:
   - acceptance checklist
   - acceptance record or self-test report
@@ -108,7 +114,9 @@ The exception chapters are:
 - Do not present `.git/worktrees/...`, sandbox directories, or other temporary paths as official delivery or acceptance paths.
 - Read `references/ENGINEERING_WORK_STRATEGY.md` when the task depends on the exact wording of workflow, acceptance, tracker, WBS, or path rules.
 - Read `references/PROJECT_STARTUP_TEMPLATE.md` when bootstrapping a new project or normalizing an existing project into this structure.
+- Read `references/PROTOTYPE_PACKAGE_STANDARD.md` when creating, moving, refreshing, reviewing, or implementing against prototype images, HTML prototypes, design screenshots, canvas mockups, or effect images.
 - Read `references/SKILL_COORDINATION.md` when this skill overlaps with planning, worktree, verification, debugging, or review skills.
+- For public release tasks, prefer the repository release script when available, and report tag push, GitHub Release creation, and public latest visibility as separate facts.
 
 ## Coordination model for multi-round projects
 
@@ -376,6 +384,27 @@ Then place project artifacts under that root:
 
 If a category already has second-level folders, keep a fixed numeric prefix order and keep the folder names human-scannable.
 
+## Codex startup guide rule
+
+For multi-worktree or multi-session projects, create or maintain a short repository-root startup guide for new Codex sessions, normally named `CODEX_START_HERE.md`.
+
+The guide should summarize:
+
+- project purpose and current facts of source
+- required reading order
+- main directory vs worktree rules
+- major subsystem map
+- service startup and verification commands
+- commit, runtime-data, and handoff constraints
+
+Governance rules:
+
+- Keep one canonical guide in the main delivery directory instead of divergent per-worktree copies.
+- Commit the guide on `main` and sync it into active worktrees by rebasing or merging from `main`.
+- Do not overwrite active worktree changes while distributing the guide; stash/pop or commit local work first.
+- Update the guide when stable project entry points, branch/worktree policy, subsystem boundaries, startup commands, or validation commands change.
+- The guide is a fast recovery entry, not a replacement for `DOC/CODEX_DOC/` or the latest handoff and acceptance records.
+
 ## Project startup template rule
 
 When the user wants a new project to follow this strategy from the start, instantiate a standard startup skeleton.
@@ -383,6 +412,7 @@ When the user wants a new project to follow this strategy from the start, instan
 The startup skeleton should create or align these outputs:
 
 1. root stable docs
+   - repository-root startup guide, for example `CODEX_START_HERE.md`, when the project has repeated Codex sessions or active worktrees
    - `README.md`
    - `00-本地工程策略映射.md`
      - include the documentation-governance basis
