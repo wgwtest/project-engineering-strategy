@@ -63,6 +63,11 @@ The exception chapters are:
 - State the round goal, non-goals, and validation method.
 - For UI or page work, determine whether a design, mockup, sample, prototype image, HTML prototype, or approved visual effect exists; if yes, name it as an implementation fact source before coding.
 - For prototype creation, prototype refresh, or prototype-driven UI work, read `references/PROTOTYPE_PACKAGE_STANDARD.md` and determine the formal prototype root before creating files.
+- If the task involves requirement-specification authoring or revising a formal requirement-specification document, first identify:
+  - the current stable main spec document,
+  - whether this round needs a separate supplement document,
+  - the target chapter structure to preserve,
+  - and the user-review gate before writing accepted content back into the main spec.
 
 ### During work
 
@@ -70,6 +75,10 @@ The exception chapters are:
 - Keep changes scoped to the current slice.
 - Avoid unrelated refactors.
 - Prefer real runtime validation over paper reasoning.
+- For requirement-specification work, preserve a stable chaptered main document rather than turning the spec into ad hoc notes, raw Q&A transcripts, or patch-only fragments.
+- When a requirement-specification change is structurally meaningful, default to a two-step flow:
+  1. write a supplement/supplement-plan document for review,
+  2. after user approval, write the accepted result back into the main spec document.
 - If a page has an approved design/prototype/effect image, treat it as part of the implementation standard, not as optional inspiration; do not replace screenshot comparison with subjective judgment or old runtime-page continuation.
 - If creating or revising a prototype, create a versioned prototype package instead of loose images; every review image must have a written design basis in the package README.
 - Do not overwrite a reviewed prototype version for a new direction or material revision; create the next version folder and preserve or archive the previous version according to the prototype package rules.
@@ -361,6 +370,7 @@ Then place project artifacts under that root:
 - `02_设计说明/`
   - stable design docs
   - flat by default; do not create a subdirectory when a theme contains only one file
+  - for requirement-specification main docs, prefer one stable main document plus dated supplement docs for major structured revisions
 - `03_规范与流程/`
   - shared data specs, key flows, design-implementation mapping, and other long-lived cross-node rules
   - add numbered second-level theme folders only when there are multiple stable subjects
@@ -383,6 +393,38 @@ Then place project artifacts under that root:
   - add later numbered process folders such as `03_验收意见处理/` only when needed
 
 If a category already has second-level folders, keep a fixed numeric prefix order and keep the folder names human-scannable.
+
+## Requirement-specification governance rule
+
+For requirement-specification work, treat the formal spec as a stable downstream-facing artifact rather than a disposable working note.
+
+Default structure expectations for the main requirement-specification document:
+
+- purpose, scope, writing stance, and terminology rules
+- system positioning, business goals, overall architecture understanding, and phase positioning
+- overall layering, module map, and inter-module boundaries
+- roles, business objects, object relationships, behaviors, constraints, and state changes
+- key flows, rules, boundaries, and non-goals
+- if the system has backend/frontend or multi-surface collaboration, separate the structure explicitly:
+  - backend stack, layering principles, module overview, and per-module responsibilities
+  - frontend stack, layering principles, page/workspace map, view-model boundaries, load lifecycle, and state-machine design
+- for each key submodule, describe:
+  - purpose
+  - inputs/outputs
+  - internal subparts
+  - interfaces or commands
+  - key states and failure handling
+  - collaboration with neighbor modules
+- completion, checking, and freeze criteria
+- formal outputs consumed by downstream stages and their handoff constraints
+
+Default process expectations for meaningful revisions:
+
+1. create a separate supplement document first
+2. describe why the revision is needed and which chapters will change
+3. get user review on that supplement direction
+4. write accepted results back into the main spec
+5. keep the supplement as process evidence, not as the long-term substitute for the main spec
 
 ## Codex startup guide rule
 
