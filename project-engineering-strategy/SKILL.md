@@ -62,6 +62,7 @@ The exception chapters are:
 - Inspect the worktree before editing.
 - State the round goal, non-goals, and validation method.
 - For UI or page work, determine whether a design, mockup, sample, prototype image, HTML prototype, or approved visual effect exists; if yes, name it as an implementation fact source before coding.
+- If a design, mockup, sample, prototype image, HTML prototype, or visual effect has been explicitly approved as the current implementation basis, treat it as the UI/page implementation baseline, not as optional layout inspiration. Existing component habits and old page organization cannot override it without a pre-declared deviation and user confirmation.
 - For prototype creation, prototype refresh, or prototype-driven UI work, read `references/PROTOTYPE_PACKAGE_STANDARD.md` and determine the formal prototype root before creating files.
 - If the task involves requirement-specification authoring or revising a formal requirement-specification document, first identify:
   - the current stable main spec document,
@@ -80,6 +81,7 @@ The exception chapters are:
   1. write a supplement/supplement-plan document for review,
   2. after user approval, write the accepted result back into the main spec document.
 - If a page has an approved design/prototype/effect image, treat it as part of the implementation standard, not as optional inspiration; do not replace screenshot comparison with subjective judgment or old runtime-page continuation.
+- For approved-design UI work, build from a design-to-code acceptance checklist covering layout, core regions, action placement, state expression, visual hierarchy, key copy, component form, and viewport assumptions. After implementation, compare the runtime screenshot against the approved design, list deviations, and correct them before claiming completion.
 - If creating or revising a prototype, create a versioned prototype package instead of loose images; every review image must have a written design basis in the package README.
 - Do not overwrite a reviewed prototype version for a new direction or material revision; create the next version folder and preserve or archive the previous version according to the prototype package rules.
 - Before changing GitHub Project, GitLab boards, or another remote collaboration surface, first confirm that the surface is formally adopted and that schema mutation is allowed in this round.
@@ -98,6 +100,7 @@ The exception chapters are:
 
 - Run the smallest meaningful static and runtime validation.
 - For UI or page work with an approved design/prototype/effect image, produce prototype screenshot + runtime screenshot + comparison conclusion before claiming completion or asking for acceptance.
+- The comparison conclusion must explicitly identify matches, deviations, fixes made, and any remaining user-confirmation items. DOM tests, type checks, builds, API checks, or "element exists" assertions do not replace visual/design conformance evidence.
 - For newly generated prototypes, verify source files, rendered images, README design-basis coverage, and regeneration commands before asking for human review.
 - When there are actual changes, create or update:
   - acceptance checklist
