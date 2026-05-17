@@ -94,10 +94,13 @@ The exception chapters are:
 - Do not let browser automation or Chrome/DevTools MCP become a single-point blocker. Timebox browser attempts, retry at most once on the same path, then switch to non-browser evidence such as local file inspection, DOM assertions, CLI validation, regression pages, scripts, or network/API checks when possible.
 - Default to working, committing, and pushing on `main`; create a feature branch only when the user explicitly asks for isolation or the task needs high-risk experiment isolation.
 - Use isolated worktrees only when necessary; before any user-visible claim, user check path, service launch, formal doc update, or formal commit/push, sync user-visible outputs back to the main delivery directory.
+- For multi-worktree projects whose branches can be launched in parallel, maintain a committed branch-to-port mapping or equivalent startup config. Do not rely on ignored local files such as `.env.local` as the only source of port truth.
+- When creating or restoring a long-lived worktree, update the repository startup guide with the branch purpose and update the committed port mapping with non-conflicting API/Web ports before reporting the worktree ready.
 - For GitHub public skill releases, do not treat pushed tags as published releases by themselves; create the GitHub Release and verify the anonymous `releases/latest` API before reporting publication.
 
 ### After work
 
+- Before the final user-facing delivery message for any completed code or UI work, run a final delivery gate instead of relying only on earlier checks. Re-read the active user request, the accepted design/prototype or formal spec if one exists, the touched files, and the verification evidence; compare the implemented result against the baseline; list any deviations or missing evidence; fix blocking deviations before saying the work is complete. This gate complements, but does not replace, brainstorming, planning, TDD, debugging, code review, or verification skills.
 - Run the smallest meaningful static and runtime validation.
 - For UI or page work with an approved design/prototype/effect image, produce prototype screenshot + runtime screenshot + comparison conclusion before claiming completion or asking for acceptance.
 - The comparison conclusion must explicitly identify matches, deviations, fixes made, and any remaining user-confirmation items. DOM tests, type checks, builds, API checks, or "element exists" assertions do not replace visual/design conformance evidence.
